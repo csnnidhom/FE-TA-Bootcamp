@@ -11,11 +11,24 @@
 |
 */
 
+Route::get('/test-session-set', function (Request $request) {
+    session(['username' => 'testuser']);
+    return redirect('/test-session-get-username');
+});
+
+Route::get('/test-session-get-username', function (Request $request) {
+    $username = session('username');
+    dd($username); // Akan menampilkan 'testuser' jika sesi berfungsi
+});
+
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
 Route::auth();
+
+//Login
+Route::post('/proses_login', 'Auth\AuthController@proses_login')->name('proses_login');
 
 //Route::get('/home', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
@@ -34,6 +47,7 @@ Route::get('/product/export','Tokoku\ProductController@export')->name('pdExport'
 //Gudang
 Route::get('/warehouse','Tokoku\WhController@index')->name('whIndex');
 Route::get('/warehouse/create','Tokoku\WhController@create')->name('whCreate');
+Route::get('/warehouse/create/test','Tokoku\WhController@create_test')->name('whCreate-test');
 Route::get('/warehouse/edit/{id}','Tokoku\WhController@edit')->name('whEdit');
 Route::post('/warehouse/store','Tokoku\WhController@store')->name('whStore');
 Route::put('/warehouse/update/{id}','Tokoku\WhController@update')->name('whUpdate');

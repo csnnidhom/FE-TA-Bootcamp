@@ -2,6 +2,9 @@
 
 return [
 
+    'api_endpoints' => [
+        'login' => env('API') . '/auth/login'
+    ],
     /*
     |--------------------------------------------------------------------------
     | Application Environment

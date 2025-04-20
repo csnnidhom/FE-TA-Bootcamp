@@ -33,11 +33,11 @@
     <link href="{{ asset('dist/css/custom/signin.css') }}" rel="stylesheet">
 </head>
 <body class="text-center">
-    <form class="form-signin" method="POST" action="{{ url('/login') }}" autocomplete="off">
+    <form class="form-signin" method="POST" action="{{ route('proses_login') }}" autocomplete="off">
         {{ csrf_field() }}
         <h1 class="h3 mb-3 font-weight-normal" style="font-family:'Tokoku'; color:cornsilk">Toko-KU</h1>
         <label for="inputEmail" class="sr-only">Email</label>
-        <input id="inputEmail" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Masukkan Email Anda" required autofocus>
+        <input id="inputEmail" type="text" class="form-control" name="email" value="{{ old('email') }}" placeholder="Masukkan Email Anda" required autofocus>
         <label for="inputPassword" class="sr-only">Kata Sandi</label>
         <input id="inputPassword" type="password" class="form-control" name="password" placeholder="Masukkan Kata Sandi Anda" required>
         <div class="checkbox mb-3">
