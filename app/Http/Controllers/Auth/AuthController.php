@@ -75,16 +75,18 @@ class AuthController extends Controller
 
     public function proses_login(Request $request)
     {
-        // $url_login = config('app.api_endpoints.login');
-        $url_login = 'https://dummyjson.com/auth/login';
+        $url_login = config('app.api_endpoints.login');
 
         $client = new Client([
             'verify' => false
         ]);
 
         $response = $client->request('POST', $url_login, [
-            'form_params' => [
-                'username' => $request->input('email'), 
+            'headers' => [
+                'Content-Type' => 'application/json',
+            ],
+            'json' => [
+                'username' => $request->input('username'), 
                 'password' => $request->input('password'),
             ],
         ]);
@@ -93,15 +95,15 @@ class AuthController extends Controller
         $responseData = json_decode($response->getBody()->getContents(), true);
 
         if ($statusCode == 200) {
-            $accessToken = $responseData['accessToken'];
+            $accessToken = $responseData['data']['token'];
+            $username = $responseData['data']['username'];
 
-            session(['accessToken' => $accessToken]);
+            session(['token' => $accessToken]);
+            session(['username' => $username]);
 
-            // return redirect()->route('dashboard')->with('success', $responseData['message']);
-            return $accessToken;
+            return redirect()->route('home')->with('success', $responseData['message']);
         } else {
-            $error = $responseData['message'];
-            return $error;
+            return redirect()->back()->with('error', $responseData['message']);
         }
     }  
 }

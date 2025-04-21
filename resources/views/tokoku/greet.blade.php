@@ -3,11 +3,12 @@
 @section('content')
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dasbor</h1>
+        <h1 class="h2">Dasbord</h1>
     </div>
     <div class="container">
+        @include('components.alert_notification')
         <h1 class="mt-5">Selamat Datang di <span style="font-family:'Tokoku'">Toko-KU</span></h1>
-        <p>Hai, {{ Auth::user()->name }}</p>
+        <p>Hai, {{ session('username') }}</p>
         <hr />
         <div class="row">
             <div class="col-md-4">
