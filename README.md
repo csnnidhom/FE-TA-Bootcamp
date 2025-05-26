@@ -5,7 +5,7 @@ Mengacu pada aturan dokumentasi [laravel-5.2] dan [bootstrap-4]
 ## Instalasi
 Langkah awal, _clonning_ dari repositori:
 ```sh
-$ git clone https://github.com/dikiwidia/tokoku.git
+$ git clone https://github.com/csnnidhom/FE-TA-Bootcamp.git
 ```
 Lanjutkan dengan menyalin file ```.env.example``` menjadi file baru ```.env``` kemudian ubah ```DB_DATABASE```, ```DB_USERNAME```, ```DB_PASSWORD``` sesuai dengan kebutuhan
 ```sh
